@@ -1,26 +1,23 @@
-import express from "express";
-import router from "./routes";
-import postgressSQL from "./infra/database/postgressSQL";
-
+import express from 'express';
+import router from './routes';
+import postgressSQL from './infra/database/postgressSQL';
 
 class App {
+  public express;
 
-    public express;
+  constructor() {
+    this.express = express();
+    this.routes();
+    this.middlewares();
+  }
 
-    constructor() {
+  middlewares() {
+    this.express.use(express.json());
+  }
 
-      this.express = express();
-      this.routes();
-      this.middlewares();
+  routes() {
+    router(this.express);
+  }
+}
 
-    }
-    middlewares() {
-        this.express.use(express.json());
-      }
-    
-      routes() {
-        router(this.express);
-      }
-    }
-    
-    module.exports = new App().express;
+module.exports = new App().express;
