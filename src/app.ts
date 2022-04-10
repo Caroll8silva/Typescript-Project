@@ -1,23 +1,19 @@
 import express from 'express';
-import router from './routes';
-import postgressSQL from './infra/database/postgressSQL';
+import pg, { Connection } from 'pg';
+
+pg.Connection = Connection;
 
 class App {
   public express;
 
   constructor() {
     this.express = express();
-    this.routes();
     this.middlewares();
   }
 
   middlewares() {
     this.express.use(express.json());
   }
-
-  routes() {
-    router(this.express);
-  }
 }
 
-module.exports = new App().express;
+export default new App().express;

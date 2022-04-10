@@ -6,13 +6,15 @@ class Database {
   }
 
   connect() {
+    const { env } = process;
     const connect = new db.Client({
-      user: 'postgres',
-      host: 'localhost',
-      database: 'TypeScript_project',
-      password: 'minhaSenha',
+      user: env.CONNECTION,
+      host: env.HOST,
+      database: env.DATABASE,
+      password: env.PASSWORD,
       port: 5432,
-    } || process.env.DATABASE);
+      migrations: env.MIGRATIONS,
+    });
 
     const connected = new db.Connection(connect);
 
