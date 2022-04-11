@@ -1,7 +1,8 @@
+import 'reflect-metadata';
 import express from 'express';
-import pg, { Connection } from 'pg';
-
-pg.Connection = Connection;
+import 'pg';
+// eslint-disable-next-line import/extensions
+import './infra/database/postgresSQL';
 
 class App {
   public express;
