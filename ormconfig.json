@@ -1,0 +1,18 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "postgres",
+    "synchronize": true,
+  "entities": [
+    "src/app/schema/*.ts"
+  ],
+  "migrations": [
+    "src/infra/database/postgresSQL/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "src/infra/database/postgresSQL"
+  }
+}
