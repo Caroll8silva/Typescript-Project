@@ -5,5 +5,5 @@ import { CityController } from '../app/controllers/CityController';
 const routes = Router();
 
 routes.post('/city', new CityController().createCity);
-routes.get('/city', new CityController().findAllCity);
+routes.get('/city', new CityController().findCity);
 export { routes };

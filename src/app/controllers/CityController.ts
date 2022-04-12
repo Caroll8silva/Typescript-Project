@@ -12,7 +12,7 @@ export class CityController {
     return res.json(result);
   }
 
-  async findAllCity(req: Request, res: Response) {
+  async findCity(req: Request, res: Response) {
     const service = new CityService();
     const result = await service.find();
     if (result instanceof Error) {
