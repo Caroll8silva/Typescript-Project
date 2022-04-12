@@ -1,24 +1,17 @@
-// eslint-disable-next-line import/extensions
-import { getRepository } from 'typeorm';
-// eslint-disable-next-line import/extensions
+/* eslint-disable import/extensions */
 import { City } from '../entities/City';
+import { CityRepository } from '../repository/CityRepository';
 
 type CityRequest = {
     name: string;
     state: string;
 
 }
+const repository = new CityRepository();
+
 export class CityService {
-  async createCity({ name, state }: CityRequest): Promise<City | Error> {
-    const repository = getRepository(City);
-
-    const city = repository.create({
-      name,
-      state,
-    });
-
-    await repository.save(city);
-
-    return city;
+  async create({ name, state }: CityRequest): Promise<City> {
+    const result = await repository.create({ name, state });
+    return result;
   }
 }
