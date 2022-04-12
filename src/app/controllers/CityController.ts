@@ -3,17 +3,14 @@ import { Request, Response } from 'express';
 import { CityService } from '../service/CityService';
 
 export class CityController {
-  async handle(request: Request, response: Response) {
-    const { name, state } = request.body;
-
+  async handle(req: Request, res: Response) {
     const service = new CityService();
 
-    const result = await service.execute({ name, state });
+    const result = await service.createCity(req.body);
 
     if (result instanceof Error) {
-      return response.status(400).json(result.message);
+      return res.status(400).json(result.message);
     }
-
-    return response.json(result);
+    return res.json(result);
   }
 }

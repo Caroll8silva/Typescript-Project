@@ -9,7 +9,7 @@ type CityRequest = {
 
 }
 export class CityService {
-  async execute({ name, state }: CityRequest): Promise<City | Error> {
+  async createCity({ name, state }: CityRequest): Promise<City | Error> {
     const repository = getRepository(City);
 
     const city = repository.create({
