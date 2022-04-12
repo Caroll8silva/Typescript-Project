@@ -1,8 +1,10 @@
+/* eslint-disable import/extensions */
 import 'reflect-metadata';
-import express from 'express';
+import express, { Router } from 'express';
 import 'pg';
 // eslint-disable-next-line import/extensions
 import './infra/database/postgresSQL';
+import { routes } from './routes';
 
 class App {
   public express;
@@ -14,6 +16,7 @@ class App {
 
   middlewares() {
     this.express.use(express.json());
+    this.express.use(routes);
   }
 }
 

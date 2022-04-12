@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import 'pg';
 // eslint-disable-next-line import/extensions
 import app from './app';
