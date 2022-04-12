@@ -1,3 +1,8 @@
 import { Router } from 'express';
+import { CityController } from '../app/controllers/CityController';
 
-const router = Router();
+const routes = Router();
+
+routes.post('/city', new CityController().handle);
+
+export { routes };
