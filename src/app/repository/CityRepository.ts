@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import { getRepository } from 'typeorm';
 
 import { City } from '../entities/City';
