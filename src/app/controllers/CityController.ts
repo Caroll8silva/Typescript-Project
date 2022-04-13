@@ -13,11 +13,13 @@ export class CityController {
   }
 
   async findCity(req: Request, res: Response) {
+    const { name, state } = req.query;
     const service = new CityService();
-    const result = await service.find();
+
+    const result = await service.find({ name, state });
     if (result instanceof Error) {
       return res.status(400).json(result.message);
     }
-    return res.json(result);
+    return res.status(200).json(result);
   }
 }

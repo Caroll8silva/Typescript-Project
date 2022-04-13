@@ -15,8 +15,8 @@ export class CityService {
     return result;
   }
 
-  async find() {
-    const result = await repository.find();
+  async find({ name, state }: CityRequest) {
+    const result = await repository.find({ name, state });
     return result;
   }
 }
