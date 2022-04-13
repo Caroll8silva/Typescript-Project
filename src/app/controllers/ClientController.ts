@@ -27,9 +27,9 @@ export class ClientController {
     const service = new ClientService();
     const { id } = req.params;
     const result = await service.delete(id);
-    return res.status(400).json(result.message);
-  }
-  return res.json(result);
-}
+    if (result instanceof Error) {
+      return res.status(400).json(result.message);
+    }
+    return res.json(result);
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 import { getRepository } from 'typeorm';
-
+import { Request } from 'express';
 import { City } from '../entities/City';
 
 type CityRequest = {
@@ -17,9 +17,10 @@ export class CityRepository {
     return city;
   }
 
-  async find(name: string, state: string) {
+  async find(req: Request) {
     const repository = getRepository(City);
-    const city = await repository.findBy({ name, state });
+    const name: string = String(req.query.name);
+    const city = await repository.find({ where: { name } });
     return city;
   }
 }
