@@ -30,4 +30,19 @@ export class ClientController {
     }
     return res.status(204).end();
   }
+
+  async updateClient(req: Request, res: Response) {
+    const { id } = req.params;
+    const {
+      fullname, gender, birthdate, age, city,
+    } = req.body;
+    const service = new ClientService();
+    const result = await service.update({
+      id, fullname, gender, birthdate, age, city,
+    });
+    if (Error) {
+      return res.status(400).json('not delete');
+    }
+    return res.status(204).json(result);
+  }
 }

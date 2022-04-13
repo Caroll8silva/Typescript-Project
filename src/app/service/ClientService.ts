@@ -9,6 +9,14 @@ type ClientRequest = {
   age: number;
   city: string
 }
+type UpdateRequest = {
+  id: string;
+  fullname: string;
+  gender: string;
+  birthdate: string;
+  age: number;
+  city: string
+}
 const repository = new ClientRepository();
 
 export class ClientService {
@@ -36,6 +44,20 @@ export class ClientService {
 
   async delete(id: string) {
     const result = await repository.delete(id);
+    return result;
+  }
+
+  async update({
+    id, fullname, gender, birthdate, age, city,
+  }: UpdateRequest) {
+    const result = await repository.update({
+      id,
+      fullname,
+      gender,
+      birthdate,
+      age,
+      city,
+    });
     return result;
   }
 }

@@ -11,7 +11,14 @@ type ClientRequest = {
     age: number;
     city: string
 }
-
+type UpdateRequest = {
+  id: string;
+  fullname: string;
+  gender: string;
+  birthdate: string;
+  age: number;
+  city: string
+}
 export class ClientRepository {
   async create({
     fullname,
@@ -40,9 +47,30 @@ export class ClientRepository {
 
   async delete(id: string) {
     const repository = getRepository(Client);
-    if (!(await repository.findBy({ id }))) {
+    if (!(await repository.findOneBy({ id }))) {
       return new Error('id not found');
     }
     await repository.delete(id);
+  }
+
+  async update({
+    id,
+    fullname,
+    gender,
+    birthdate,
+    age,
+    city,
+  }: UpdateRequest) {
+    const repository = getRepository(Client);
+    const client = await repository.findOneBy({ id });
+
+    if (!client) { return new Error('id not found'); }
+    client.fullname = fullname || client.fullname;
+    client.gender = gender || client.gender;
+    client.birthdate = birthdate || client.birthdate;
+    client.age = age || client.age;
+    client.city = city || client.city;
+
+    await repository.save(client);
   }
 }

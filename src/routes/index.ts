@@ -10,5 +10,6 @@ routes.get('/city', new CityController().findCity);
 
 routes.post('/client', new ClientController().createClient);
 routes.get('/client', new ClientController().findClient);
-routes.delete('/client', new ClientController().deleteClient);
+routes.delete('/client/:id', new ClientController().deleteClient);
+routes.put('/client/:id', new ClientController().updateClient);
 export { routes };
