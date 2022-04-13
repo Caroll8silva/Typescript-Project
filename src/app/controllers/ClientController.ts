@@ -1,6 +1,4 @@
-import {
-  request, Request, response, Response,
-} from 'express';
+import { Request, Response } from 'express';
 // eslint-disable-next-line import/extensions
 import { ClientService } from '../service/ClientService';
 
@@ -26,10 +24,10 @@ export class ClientController {
   async deleteClient(req: Request, res: Response) {
     const service = new ClientService();
     const { id } = req.params;
-    const result = await service.delete(id);
-    if (result instanceof Error) {
-      return res.status(400).json(result.message);
+    await service.delete(id);
+    if (Error) {
+      return res.status(400).json('not delete');
     }
-    return res.json(result);
+    return res.status(204).end();
   }
 }
