@@ -28,4 +28,9 @@ export class ClientService {
     });
     return result;
   }
+
+  async find() {
+    const result = await repository.find();
+    return result;
+  }
 }

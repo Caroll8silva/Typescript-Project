@@ -30,4 +30,10 @@ export class ClientRepository {
     await repository.save(client);
     return client;
   }
+
+  async find() {
+    const repository = getRepository(Client);
+    const client = await repository.find();
+    return client;
+  }
 }

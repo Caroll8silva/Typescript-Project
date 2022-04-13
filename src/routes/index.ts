@@ -8,4 +8,5 @@ const routes = Router();
 routes.post('/city', new CityController().createCity);
 routes.get('/city', new CityController().findCity);
 routes.post('/client', new ClientController().createClient);
+routes.get('/client', new ClientController().findClient);
 export { routes };
