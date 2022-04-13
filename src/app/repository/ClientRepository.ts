@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 import { getRepository } from 'typeorm';
@@ -35,5 +36,13 @@ export class ClientRepository {
     const repository = getRepository(Client);
     const client = await repository.find();
     return client;
+  }
+
+  async delete(id: string) {
+    const repository = getRepository(Client);
+    if (!(await repository.findBy({ id }))) {
+      return new Error('id not found');
+    }
+    await repository.delete(id);
   }
 }
