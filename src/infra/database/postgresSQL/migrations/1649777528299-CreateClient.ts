@@ -21,7 +21,7 @@ export class CreateClient1649777528299 implements MigrationInterface {
           },
           {
             name: 'birthdate',
-            type: 'date',
+            type: 'string',
           },
           {
             name: 'age',
