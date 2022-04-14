@@ -5,6 +5,7 @@ import 'pg';
 // eslint-disable-next-line import/extensions
 import './infra/database/postgresSQL';
 import cors from 'cors';
+import { pagination } from 'typeorm-pagination';
 import { routes } from './routes';
 
 class App {
@@ -19,6 +20,7 @@ class App {
   middlewares() {
     this.express.use(express.json());
     this.express.use(cors());
+    this.express.use(pagination);
   }
 
   routes() {
