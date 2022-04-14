@@ -20,7 +20,16 @@ export class ClientController {
     const service = new ClientService();
 
     const result = await service.find({ fullname, gender, birthdate, age, city });
+    if (result instanceof Error) {
+      return res.status(400).json(result.message);
+    }
+    return res.status(200).json(result);
+  }
 
+  async findOneClient(req: Request, res: Response) {
+    const service = new ClientService();
+    const { id } = req.params;
+    const result = await service.findOne(id);
     if (result instanceof Error) {
       return res.status(400).json(result.message);
     }

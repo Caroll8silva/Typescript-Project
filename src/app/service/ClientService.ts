@@ -31,6 +31,11 @@ export class ClientService {
     return result;
   }
 
+  async findOne(id: string) {
+    const result = await repository.findOne(id);
+    return result;
+  }
+
   async delete(id: string) {
     const result = await repository.delete(id);
     return result;

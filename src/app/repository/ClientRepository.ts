@@ -37,6 +37,15 @@ export class ClientRepository {
     return client;
   }
 
+  async findOne(id: string) {
+    const repository = getRepository(Client);
+    const result = await repository.findOneBy({ id });
+    if (!result) {
+      return new Error('id not found');
+    }
+    return result;
+  }
+
   async delete(id: string) {
     const repository = getRepository(Client);
     if (!(await repository.findOneBy({ id }))) {
