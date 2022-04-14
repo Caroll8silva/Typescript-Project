@@ -12,8 +12,8 @@ class App {
 
   constructor() {
     this.express = express();
-    this.routes();
     this.middlewares();
+    this.routes();
   }
 
   middlewares() {
@@ -22,7 +22,7 @@ class App {
   }
 
   routes() {
-    this.express.use(routes);
+    this.express.use('/api', routes);
   }
 }
 
