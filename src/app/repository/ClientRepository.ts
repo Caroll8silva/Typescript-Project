@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
@@ -11,37 +12,28 @@ type ClientRequest = {
     age: number;
     city: string
 }
-type UpdateRequest = {
+ type UpdateRequest = {
   id: string;
   fullname: string;
-  gender: string;
-  birthdate: string;
-  age: number;
-  city: string
 }
 export class ClientRepository {
-  async create({
-    fullname,
-    gender,
-    birthdate,
-    age,
-    city,
-  }: ClientRequest): Promise<Client> {
+  async create({ fullname, gender, birthdate, age, city }: ClientRequest): Promise<Client> {
     const repository = getRepository(Client);
-    const client = repository.create({
-      fullname,
-      gender,
-      birthdate,
-      age,
-      city,
-    });
+    const client = repository.create({ fullname, gender, birthdate, age, city });
     await repository.save(client);
+    console.log(client);
     return client;
   }
 
-  async find() {
+  async find({
+    fullname, gender, birthdate, age, city,
+  }: ClientRequest): Promise<Client[]> {
     const repository = getRepository(Client);
-    const client = await repository.find();
+    const client = await repository.find({
+      where: {
+        fullname, gender, birthdate, age, city,
+      },
+    });
     return client;
   }
 
@@ -53,24 +45,12 @@ export class ClientRepository {
     await repository.delete(id);
   }
 
-  async update({
-    id,
-    fullname,
-    gender,
-    birthdate,
-    age,
-    city,
-  }: UpdateRequest) {
+  async update({ id, fullname }: UpdateRequest) {
     const repository = getRepository(Client);
     const client = await repository.findOneBy({ id });
 
     if (!client) { return new Error('id not found'); }
     client.fullname = fullname || client.fullname;
-    client.gender = gender || client.gender;
-    client.birthdate = birthdate || client.birthdate;
-    client.age = age || client.age;
-    client.city = city || client.city;
-
     await repository.save(client);
   }
 }
