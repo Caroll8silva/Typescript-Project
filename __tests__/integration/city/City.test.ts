@@ -2,8 +2,8 @@
 /* eslint-disable import/extensions */
 import supertest from 'supertest';
 import { getConnection } from 'typeorm';
-import app from '../../../src/app';
-import createConnection from '../../../src/infra/database/postgresSQL';
+import app from '../../app';
+import createConnection from '../../database/postgres_test';
 
 beforeAll(async () => {
   await createConnection();
@@ -16,11 +16,11 @@ afterAll(async () => {
 });
 
 describe('creating a city', () => {
-  const cityInformation = {
-    name: 'Fortaleza',
-    state: 'Ceará',
-  };
   it('Should be possible to create a city', async () => {
+    const cityInformation = {
+      name: 'Fortaleza',
+      state: 'Ceará',
+    };
     const response = await supertest(app).post('/api/city').send(cityInformation);
     if (!response) {
       const { status } = response;
@@ -33,14 +33,27 @@ describe('creating a city', () => {
     }
   });
   it('Should be possible to list a city', async () => {
-    const cityInformation2 = {
+    const cityInformation = {
       name: 'Olinda',
       state: 'Pernambuco',
     };
-    await supertest(app).post('/api/city').send(cityInformation2);
+    await supertest(app).post('/api/city').send(cityInformation);
     const response = await supertest(app).get('/api/city');
 
     const { status } = response;
     expect(status).toBe(200);
+  });
+
+  it('Should be possible to give an error when listing', async () => {
+    const cityInformation = {
+      name: 'Natal',
+      state: 'Rio grande do norte',
+    };
+    const { text } = await supertest(app).post('/api/city').send(cityInformation);
+    const { id } = JSON.parse(text);
+    const response = await supertest(app).get(`/api/city/${id.toString()}`);
+
+    const { status } = response;
+    expect(status).toBe(404);
   });
 });
