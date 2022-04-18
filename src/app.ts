@@ -7,6 +7,9 @@ import './infra/database/postgresSQL';
 import cors from 'cors';
 import { pagination } from 'typeorm-pagination';
 import { routes } from './routes';
+import createConnection from '../src/infra/database/postgresSQL';
+
+createConnection();
 
 class App {
   public express;

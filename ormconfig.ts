@@ -8,7 +8,7 @@ export default new DataSource({
   password: 'postgres',
   database: 'postgres',
   entities: ['src/app/entities/*.ts'],
-  synchronize: false,
+  synchronize: true,
   migrations: [
     'src/infra/database/postgresSQL/migrations/*.ts',
   ],

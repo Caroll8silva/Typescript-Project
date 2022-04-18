@@ -1,13 +1,13 @@
-import { createConnection } from 'typeorm';
+import { Connection, createConnection, getConnectionOptions } from 'typeorm';
 import 'pg';
 
-class Database {
-  constructor() {
-    this.connect();
-  }
+export default async (): Promise<Connection> => {
+  const defaultOptions = await getConnectionOptions();
 
-  async connect() {
-    await createConnection();
-  }
-}
-export default new Database().connect;
+  return createConnection(
+    Object.assign(defaultOptions, {
+      type: defaultOptions.type,
+      database: defaultOptions.database,
+    }),
+  );
+};
