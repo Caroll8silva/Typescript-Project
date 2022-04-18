@@ -14,9 +14,14 @@ export class ClientController {
   }
 
   async findClient(req: Request, res: Response) {
-    const {
-      fullname, gender, birthdate, age, city,
-    } = req.query;
+    // const { fullname, gender, birthdate, age, city } = req.query;
+
+    const fullname = req.query.fullname as string;
+    const gender = req.query.gender as string;
+    const birthdate = req.query.birthdate as string;
+    const age = req.query.age as any;
+    const city = req.query.city as string;
+
     const service = new ClientService();
 
     const result = await service.find({ fullname, gender, birthdate, age, city });

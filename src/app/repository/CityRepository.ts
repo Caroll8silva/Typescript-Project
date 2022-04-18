@@ -4,8 +4,8 @@ import { getRepository } from 'typeorm';
 import { City } from '../entities/City';
 
 type CityRequest = {
-    name: string;
-    state: string;
+    name: string,
+    state: string
 }
 
 export class CityRepository {

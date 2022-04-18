@@ -13,7 +13,8 @@ export class CityController {
   }
 
   async findCity(req: Request, res: Response) {
-    const { name, state } = req.query;
+    const state = req.query.state as string;
+    const name = req.query.name as string;
     const service = new CityService();
 
     const result = await service.find({ name, state });

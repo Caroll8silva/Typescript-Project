@@ -3,8 +3,8 @@ import { City } from '../entities/City';
 import { CityRepository } from '../repository/CityRepository';
 
 type CityRequest = {
-    name: string;
-    state: string;
+    name: string,
+    state: string
 
 }
 const repository = new CityRepository();
@@ -15,7 +15,7 @@ export class CityService {
     return result;
   }
 
-  async find({ name, state }: CityRequest) {
+  async find({ name, state }: CityRequest): Promise<City[]> {
     const result = await repository.find({ name, state });
     return result;
   }
