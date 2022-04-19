@@ -1,3 +1,5 @@
+![capa type](https://user-images.githubusercontent.com/63256085/163912927-ca978dac-5fcb-4cf4-9961-e56d6869619d.png)
+
 # PROJETO API EM TYPESCRIPT
 
 Sistema para cadastro de clientes e cidades. (EM ANDAMENTO)
