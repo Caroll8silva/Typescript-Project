@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable import/extensions */
 import { ClientRepository } from '../repository/ClientRepository';
 
 type ClientRequest = {
@@ -17,8 +15,12 @@ type UpdateRequest = {
 const repository = new ClientRepository();
 
 export class ClientService {
-  async create({ fullname, gender, birthdate, age, city }: ClientRequest) {
-    const result = await repository.create({ fullname, gender, birthdate, age, city });
+  async create({
+    fullname, gender, birthdate, age, city,
+  }: ClientRequest) {
+    const result = await repository.create({
+      fullname, gender, birthdate, age, city,
+    });
     return result;
   }
 

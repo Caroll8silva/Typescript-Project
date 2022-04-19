@@ -1,4 +1,3 @@
-/* eslint-disable import/no-import-module-exports */
 import Joi from 'joi';
 import { Request, Response, NextFunction } from 'express';
 

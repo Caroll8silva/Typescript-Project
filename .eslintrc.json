@@ -21,6 +21,8 @@
         "no-underscore-dangle": "off",
         "no-console": "off",
         "linebreak-style": "off",
-        "import/prefer-default-export": "off"
+        "import/prefer-default-export": "off",
+       "import/extensions": "off",
+       "consistent-return": "off"
     }
 }

@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-/* eslint-disable import/extensions */
 import supertest from 'supertest';
 import { getConnection } from 'typeorm';
 import app from '../../app';
