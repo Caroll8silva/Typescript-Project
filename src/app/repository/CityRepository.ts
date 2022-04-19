@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import { City } from '../entities/City';
+import isUnique from '../utils/IsUniqueCity';
 
 type CityRequest = {
     name: string,
@@ -8,6 +9,7 @@ type CityRequest = {
 
 export class CityRepository {
   async create({ name, state }: CityRequest): Promise<City> {
+    await isUnique(name);
     const repository = getRepository(City);
     const city = repository.create({ name, state });
     await repository.save(city);

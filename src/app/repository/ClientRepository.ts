@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import { Client } from '../entities/Client';
+import isUnique from '../utils/isUniqueClient';
 
 type ClientRequest = {
     fullname: string;
@@ -15,13 +16,13 @@ type ClientRequest = {
 export class ClientRepository {
   async create({
     fullname, gender, birthdate, age, city,
-  }: ClientRequest): Promise<Client> {
+  }: ClientRequest) {
+    await isUnique(fullname);
     const repository = getRepository(Client);
     const client = repository.create({
       fullname, gender, birthdate, age, city,
     });
     await repository.save(client);
-    console.log(client);
     return client;
   }
 

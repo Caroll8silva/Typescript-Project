@@ -6,6 +6,9 @@ export class CityController {
     try {
       const service = new CityService();
       const result = await service.create(req.body);
+      if (result instanceof Error) {
+        return res.status(400).json(result.message);
+      }
       return res.status(200).json(result);
     } catch (error) { return res.status(400).json({ 'description:': error.message, 'name:': error.name }); }
   }

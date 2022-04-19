@@ -6,7 +6,7 @@ export class ClientController {
     try {
       const service = new ClientService();
       const result = await service.create(req.body);
-      return res.status(200).json(result);
+      return res.json(result);
     } catch (error) { return res.status(400).json({ 'description:': error.message, 'name:': error.name }); }
   }
 
