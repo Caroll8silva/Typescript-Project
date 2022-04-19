@@ -75,8 +75,9 @@ Rota para remover um cliente (DELETE)
 Rota para alterar nome do cliente (PUT)
 ![updateClient](https://user-images.githubusercontent.com/63256085/164023016-694aaff3-9940-42ae-bbfc-2f4771e60104.png)
 
+Exemplo:
 ```bash
 {
-"fullname": "Ana da Silva",
+"fullname": "Ana da Silva"
 }
  ```
